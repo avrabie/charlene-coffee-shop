@@ -2,6 +2,7 @@ package org.charnele.shop.service;
 
 import org.charnele.shop.model.Customer;
 import org.charnele.shop.model.Food;
+import org.charnele.shop.model.FoodItem;
 import org.charnele.shop.model.Order;
 
 import java.util.List;
@@ -17,8 +18,13 @@ public class OrderService {
     }
 
     public void getReceit(Order order) {
+        String welcome = "Welcome to the Charlene's Shop";
+
+        System.out.println(String.format("%-" + 80 + "s", String.format("%" + (welcome.length() + (80 - welcome.length()) / 2) + "s", welcome)));
         List<Food> orderedFoods = order.getOrderedFoods();
         orderedFoods.forEach(System.out::println);
+        String total = "Total: " + orderedFoods.stream().map(FoodItem::getPrice).reduce(Double::sum).orElse(0.0);
+        System.out.println(String.format("%1$80s", total) + " CHF");
 
     }
 

@@ -2,6 +2,7 @@ package org.charnele.shop.service;
 
 import org.charnele.shop.model.Order;
 import org.charnele.shop.model.beaverages.Coffee;
+import org.charnele.shop.model.beaverages.Tea;
 import org.charnele.shop.model.beaverages.size.Size;
 import org.charnele.shop.model.extras.FoamedMilk;
 import org.junit.jupiter.api.Test;
@@ -19,10 +20,16 @@ class OrderServiceTest {
         Order newOrder = orderService.createNewOrder();
 
         Coffee coffee = menuService.coffee(Size.LARGE);
+        menuService.addMilk(coffee);
+        menuService.addFoamedMilk(coffee);
+        menuService.addSpecialRoast(coffee);
 
-
+        Tea tea = menuService.tea(Size.MEDIUM);
+        menuService.addSpices(tea);
 
         newOrder.addFoodItem(coffee);
+        newOrder.addFoodItem(tea);
+
         orderService.getReceit(newOrder);
 
     }
