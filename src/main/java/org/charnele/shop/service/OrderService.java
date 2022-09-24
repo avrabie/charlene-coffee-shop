@@ -18,11 +18,12 @@ public class OrderService {
     }
 
     public void getReceit(Order order) {
-        String welcome = "Welcome to the Charlene's Shop";
-
-        System.out.println(String.format("%-" + 80 + "s", String.format("%" + (welcome.length() + (80 - welcome.length()) / 2) + "s", welcome)));
         List<Food> orderedFoods = order.getOrderedFoods();
+
+        String welcome = "Welcome to the Charlene's Shop";
+        System.out.println(String.format("%-" + 80 + "s", String.format("%" + (welcome.length() + (80 - welcome.length()) / 2) + "s", welcome)));
         orderedFoods.forEach(System.out::println);
+        // TODO: 25/09/2022 IMPORTANT Extract this into a service to calculate some discounts
         String total = "Total: " + orderedFoods.stream().map(FoodItem::getPrice).reduce(Double::sum).orElse(0.0);
         System.out.println(String.format("%1$80s", total) + " CHF");
 
