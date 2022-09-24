@@ -1,7 +1,6 @@
 package org.charnele.shop.model.extras;
 
 import org.charnele.shop.model.Extra;
-import org.charnele.shop.model.Item;
 
 public class SpecialRoast implements Extra {
     @Override

@@ -1,8 +1,8 @@
 package org.charnele.shop.model.extras;
 
-import org.charnele.shop.model.Item;
+import org.charnele.shop.model.FoodItem;
 
-public class Spices implements Item {
+public class Spices implements FoodItem {
     @Override
     public String getDescription() {
         return "spices";

@@ -9,6 +9,6 @@ class MainTest {
 
     @Test
     public void testTest() {
-        Assertions.assertEquals(5,5);
+
     }
 }

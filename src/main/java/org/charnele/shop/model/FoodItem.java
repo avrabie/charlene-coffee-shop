@@ -1,6 +1,6 @@
 package org.charnele.shop.model;
 
-public interface Item {
+public interface FoodItem {
     String getDescription();
     Double getPrice();
 

@@ -2,6 +2,7 @@ package org.charnele.shop.service;
 
 import org.charnele.shop.model.beaverages.Beverage;
 import org.charnele.shop.model.beaverages.Coffee;
+import org.charnele.shop.model.beaverages.OrangeJuice;
 import org.charnele.shop.model.beaverages.Tea;
 import org.charnele.shop.model.beaverages.size.Size;
 import org.charnele.shop.model.extras.Milk;
@@ -15,7 +16,7 @@ class MenuServiceTest {
 
     @Test
     void orderDefaultCoffee() {
-        Beverage coffee = menuService.orderCoffee(Size.LARGE);
+        Beverage coffee = menuService.coffee(Size.LARGE);
         Assertions.assertEquals(3.5, coffee.getPrice());
         Assertions.assertEquals("large coffee", coffee.getDescription());
 
@@ -24,7 +25,7 @@ class MenuServiceTest {
 
     @Test
     void orderCoffeeAndMilk() {
-        Beverage coffee = menuService.orderCoffee(Size.LARGE);
+        Beverage coffee = menuService.coffee(Size.LARGE);
         coffee.withExtras(new Milk());
         Assertions.assertEquals(3.8, coffee.getPrice());
         Assertions.assertEquals("large coffee with extras: milk", coffee.getDescription());
@@ -50,11 +51,29 @@ class MenuServiceTest {
 
     @Test
     void orderSmallCoffeSpecialRoastWithDoubleMilk() {
-        Coffee coffee = menuService.orderCoffee(Size.SMALL);
+        Coffee coffee = menuService.coffee(Size.SMALL);
         coffee.withExtras(new SpecialRoast()).withExtras(new Milk()).withExtras(new Milk());
         Assertions.assertEquals(4.0, coffee.getPrice());
         Assertions.assertEquals("small coffee with extras: special roast, milk, milk", coffee.getDescription());
 
+    }
+
+    @Test
+    void orderOrangeJuice() {
+        OrangeJuice orangeJuice = menuService.orangeJuice();
+        System.out.println(orangeJuice);
+    }
+
+    @Test
+    void orderRefillOrangeJuice() {
+        OrangeJuice orangeJuice1 = menuService.orangeJuice();
+        OrangeJuice orangeJuice2 = menuService.refillOrangeJuice(orangeJuice1);
+        System.out.println(orangeJuice2);
+        System.out.println(orangeJuice1);
+        Coffee coffee = menuService.coffee(Size.SMALL);
+        System.out.println(coffee);
+        Coffee coffee1 = menuService.orderLatte(Size.LARGE);
+        System.out.println(coffee1);
     }
 
 }

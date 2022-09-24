@@ -1,7 +1,6 @@
 package org.charnele.shop.model.beaverages;
 
 
-import org.charnele.shop.model.Item;
 import org.charnele.shop.model.beaverages.size.Size;
 
 import java.util.ArrayList;

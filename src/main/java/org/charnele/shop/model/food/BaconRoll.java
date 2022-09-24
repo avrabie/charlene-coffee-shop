@@ -1,8 +1,8 @@
 package org.charnele.shop.model.food;
 
-import org.charnele.shop.model.Item;
+import org.charnele.shop.model.Food;
 
-public class BaconRoll implements Item {
+public class BaconRoll extends Food {
     @Override
     public String getDescription() {
         return "backon roll";
