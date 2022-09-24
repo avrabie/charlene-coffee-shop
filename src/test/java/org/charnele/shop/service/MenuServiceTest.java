@@ -43,7 +43,7 @@ class MenuServiceTest {
 
     @Test
     void orderTeaMedium() {
-        Tea tea = menuService.orderTea(Size.MEDIUM);
+        Tea tea = menuService.tea(Size.MEDIUM);
         menuService.addMilk(tea);
         Assertions.assertTrue(2.7-tea.getPrice()<0.01);
         Assertions.assertEquals("medium tea with extras: milk", tea.getDescription());
