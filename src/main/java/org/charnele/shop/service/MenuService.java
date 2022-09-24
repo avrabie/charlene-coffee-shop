@@ -1,5 +1,6 @@
 package org.charnele.shop.service;
 
+import org.charnele.shop.model.beaverages.Beverage;
 import org.charnele.shop.model.beaverages.Coffee;
 import org.charnele.shop.model.beaverages.OrangeJuice;
 import org.charnele.shop.model.beaverages.Tea;
@@ -13,7 +14,17 @@ public class MenuService {
         return new Coffee(size);
     }
 
-    public BaconRoll bakonRoll(Size size) {
+    public Beverage addMilk(Beverage beverage) {
+        beverage.withExtras(new Milk());
+        return beverage;
+    }
+
+    public Beverage addFoamedMilk(Beverage beverage) {
+        beverage.withExtras(new FoamedMilk());
+        return beverage;
+    }
+
+    public BaconRoll baconRoll(Size size) {
         return new BaconRoll();
     }
 
@@ -25,7 +36,10 @@ public class MenuService {
         return new OrangeJuice(orangeJuice);
     }
 
-    public Coffee orderCoffeeWithMilk(Size size) {
+
+
+
+    public Coffee orderCappucino(Size size) {
         Coffee coffee = new Coffee(size);
         coffee.withExtras(new Milk());
         return coffee;
@@ -38,9 +52,8 @@ public class MenuService {
 
     }
 
-    public Tea orderTeaWithMilk(Size size) {
+    public Tea orderTea(Size size) {
         Tea tea = new Tea(size);
-        tea.withExtras(new Milk());
         return tea;
     }
 }

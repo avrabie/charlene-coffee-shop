@@ -24,7 +24,7 @@ public class Tea extends Beverage {
     public Tea(Size size) {
         super("tea", size.getPrice(), new ArrayList<>());
         this.size =size;
-        this.priceStrategy = price -> price*.08;
+        this.priceStrategy = price -> price*.8;
     }
 
     @Override

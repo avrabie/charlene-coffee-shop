@@ -43,8 +43,9 @@ class MenuServiceTest {
 
     @Test
     void orderTeaMedium() {
-        Tea tea = menuService.orderTeaWithMilk(Size.MEDIUM);
-        Assertions.assertEquals(2.64, tea.getPrice());
+        Tea tea = menuService.orderTea(Size.MEDIUM);
+        menuService.addMilk(tea);
+        Assertions.assertTrue(2.7-tea.getPrice()<0.01);
         Assertions.assertEquals("medium tea with extras: milk", tea.getDescription());
 
     }
@@ -58,14 +59,10 @@ class MenuServiceTest {
 
     }
 
-    @Test
-    void orderOrangeJuice() {
-        OrangeJuice orangeJuice = menuService.orangeJuice();
-        System.out.println(orangeJuice);
-    }
+
 
     @Test
-    void orderRefillOrangeJuice() {
+    void orderRefillOrangeJuiceShowToString() {
         OrangeJuice orangeJuice1 = menuService.orangeJuice();
         OrangeJuice orangeJuice2 = menuService.refillOrangeJuice(orangeJuice1);
         System.out.println(orangeJuice2);
