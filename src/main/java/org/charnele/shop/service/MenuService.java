@@ -1,15 +1,14 @@
 package org.charnele.shop.service;
 
 import org.charnele.shop.model.Extra;
-import org.charnele.shop.model.Food;
 import org.charnele.shop.model.beaverages.Beverage;
 import org.charnele.shop.model.beaverages.Coffee;
 import org.charnele.shop.model.beaverages.OrangeJuice;
 import org.charnele.shop.model.beaverages.Tea;
 import org.charnele.shop.model.beaverages.size.Size;
 import org.charnele.shop.model.extras.*;
-import org.charnele.shop.model.food.BaconRoll;
-import org.charnele.shop.model.food.Hamburger;
+import org.charnele.shop.model.snack.BaconRoll;
+import org.charnele.shop.model.snack.Hamburger;
 
 public class MenuService {
 

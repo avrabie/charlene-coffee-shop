@@ -4,7 +4,7 @@ import org.charnele.shop.model.FoodItem;
 import org.charnele.shop.model.Order;
 import org.charnele.shop.model.beaverages.Beverage;
 import org.charnele.shop.model.discount.Discount;
-import org.charnele.shop.model.food.Snack;
+import org.charnele.shop.model.snack.Snack;
 
 import java.util.ArrayList;
 import java.util.Comparator;

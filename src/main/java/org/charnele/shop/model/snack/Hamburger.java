@@ -1,4 +1,4 @@
-package org.charnele.shop.model.food;
+package org.charnele.shop.model.snack;
 
 public class Hamburger extends Snack {
     @Override

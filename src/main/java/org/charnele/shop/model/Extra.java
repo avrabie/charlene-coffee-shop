@@ -1,5 +1,5 @@
 package org.charnele.shop.model;
 
-// TODO: 24/09/2022 Creating a marker for some cool features where we will be able to discriminate betweeb FoodItems and Extra add-ons
+// marker interface to be able to discriminate between FoodItems and Extra add-ons. Later we can have extras for Snacks as well
 public interface Extra extends FoodItem {
 }

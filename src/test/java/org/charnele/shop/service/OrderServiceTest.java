@@ -4,12 +4,9 @@ import org.charnele.shop.model.Order;
 import org.charnele.shop.model.beaverages.Coffee;
 import org.charnele.shop.model.beaverages.Tea;
 import org.charnele.shop.model.beaverages.size.Size;
-import org.charnele.shop.model.extras.FoamedMilk;
-import org.charnele.shop.model.food.BaconRoll;
-import org.charnele.shop.model.food.Hamburger;
+import org.charnele.shop.model.snack.BaconRoll;
+import org.charnele.shop.model.snack.Hamburger;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class OrderServiceTest {
 
