@@ -2,12 +2,13 @@ package org.charnele.shop.model.discount;
 
 import org.charnele.shop.model.FoodItem;
 
-;
+;import java.text.DecimalFormat;
 
 public class Discount {
     private String name;
     private Double amount;
     private FoodItem discountedFood;
+    DecimalFormat df = new DecimalFormat("###.###");
 
     public Discount(String name, Double amount) {
         this.name = name;
@@ -39,7 +40,10 @@ public class Discount {
 
     @Override
     public String toString() {
-        // TODO: 25/09/2022 To be formated properly
-        return this.getName() + "  " + this.getAmount() + " CHF";
+        int length = 80;
+        String currencySymbol = " CHF";
+        length = length - this.getName().length();
+        String formatPaddingPrice = String.format("%1$" + length + "s", df.format(this.getAmount()));
+        return String.format("%s", this.getName() + formatPaddingPrice + currencySymbol);
     }
 }

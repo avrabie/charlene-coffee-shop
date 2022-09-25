@@ -8,6 +8,7 @@ import org.charnele.shop.model.beaverages.Tea;
 import org.charnele.shop.model.beaverages.size.Size;
 import org.charnele.shop.model.snack.BaconRoll;
 import org.charnele.shop.model.snack.Hamburger;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class OrderServiceTest {
@@ -21,7 +22,7 @@ class OrderServiceTest {
         Order newOrder = orderService.createNewOrder();
         Coffee coffee = menuService.coffee(Size.SMALL);
         newOrder.addFoodItem(coffee);
-        orderService.getRecite(newOrder);
+        orderService.getReceipt(newOrder);
     }
 
     @Test
@@ -39,7 +40,7 @@ class OrderServiceTest {
         newOrder.addFoodItem(coffee);
         newOrder.addFoodItem(tea);
 
-        orderService.getRecite(newOrder);
+        orderService.getReceipt(newOrder);
 
     }
 
@@ -62,7 +63,7 @@ class OrderServiceTest {
         BaconRoll baconRoll = menuService.baconRoll();
         newOrder.addFoodItem(baconRoll);
 
-        orderService.getRecite(newOrder);
+        orderService.getReceipt(newOrder);
 
     }
 
@@ -79,7 +80,7 @@ class OrderServiceTest {
         BaconRoll baconRoll = menuService.baconRoll();
         newOrder.addFoodItem(baconRoll);
 
-        orderService.getRecite(newOrder);
+        orderService.getReceipt(newOrder);
 
     }
     @Test
@@ -95,7 +96,7 @@ class OrderServiceTest {
         Hamburger hamburger = menuService.hamburger();
         newOrder.addFoodItem(hamburger);
 
-        orderService.getRecite(newOrder);
+        orderService.getReceipt(newOrder);
 
     }
 
@@ -112,7 +113,8 @@ class OrderServiceTest {
         newOrder.addFoodItem(coffee);
         Hamburger hamburger = menuService.hamburger();
         newOrder.addFoodItem(hamburger);
-        orderService.getRecite(newOrder);
+        orderService.getReceipt(newOrder);
+        Assertions.assertTrue(newOrder.getCustomer()==null);
 
     }
 
@@ -126,7 +128,8 @@ class OrderServiceTest {
         newOrder.addFoodItem(coffee);
         Hamburger hamburger = menuService.hamburger();
         newOrder.addFoodItem(hamburger);
-        orderService.getRecite(newOrder);
+        orderService.getReceipt(newOrder);
+        Assertions.assertTrue(newOrder.getCustomer()==null);
 
     }
 
@@ -139,7 +142,8 @@ class OrderServiceTest {
 
         newOrder.addFoodItem(orangeJuice);
 
-        orderService.getRecite(newOrder);
+        orderService.getReceipt(newOrder);
+        Assertions.assertTrue(newOrder.getCustomer()==null);
 
     }
 
@@ -153,7 +157,8 @@ class OrderServiceTest {
 
         newOrder.addFoodItem(orangeJuice);
 
-        orderService.getRecite(newOrder);
+        orderService.getReceipt(newOrder);
+        Assertions.assertTrue(newOrder.getCustomer()==null);
     }
 
 
@@ -170,9 +175,9 @@ class OrderServiceTest {
         orangeJuice = menuService.refillOrangeJuice(orangeJuice); //refill twice
 
         firstOrder.addFoodItem(orangeJuice);
-        orderService.getRecite(firstOrder);
+        orderService.getReceipt(firstOrder);
 
-        System.out.println(customer.getOrderedBeverages());
+        Assertions.assertEquals(2, customer.getOrderedBeverages());
 
         //second visit
         Order secondOrder = orderService.createNewOrder(customer);
@@ -182,16 +187,16 @@ class OrderServiceTest {
         Tea tea = menuService.tea(Size.MEDIUM);
         menuService.addSpices(tea);
         secondOrder.addFoodItem(tea);
-        orderService.getRecite(secondOrder);
+        orderService.getReceipt(secondOrder);
 
-        System.out.println(customer.getOrderedBeverages());
+        Assertions.assertEquals(4, customer.getOrderedBeverages());
 
         //third time
         Order thirdOrder = orderService.createNewOrder(customer);
         Coffee coffee3 = menuService.coffee(Size.SMALL);
         thirdOrder.addFoodItem(coffee3);
-        orderService.getRecite(thirdOrder);
-        System.out.println(customer.getOrderedBeverages());
+        orderService.getReceipt(thirdOrder);
+        Assertions.assertEquals(5, customer.getOrderedBeverages());
 
     }
 
@@ -209,9 +214,9 @@ class OrderServiceTest {
         orangeJuice = menuService.refillOrangeJuice(orangeJuice); //refill twice
 
         firstOrder.addFoodItem(orangeJuice);
-        orderService.getRecite(firstOrder);
+        orderService.getReceipt(firstOrder);
 
-        System.out.println(customer.getOrderedBeverages());
+        Assertions.assertEquals(2, customer.getOrderedBeverages());
 
         //second visit
         Order secondOrder = orderService.createNewOrder(customer);
@@ -221,9 +226,9 @@ class OrderServiceTest {
         Tea tea = menuService.tea(Size.MEDIUM);
         menuService.addSpices(tea);
         secondOrder.addFoodItem(tea);
-        orderService.getRecite(secondOrder);
+        orderService.getReceipt(secondOrder);
 
-        System.out.println(customer.getOrderedBeverages());
+        Assertions.assertEquals(4, customer.getOrderedBeverages());
 
         //third time
         Order thirdOrder = orderService.createNewOrder(customer);
@@ -233,8 +238,9 @@ class OrderServiceTest {
         OrangeJuice orangeJuice1 = menuService.orangeJuice();
         thirdOrder.addFoodItem(orangeJuice1);
 
-        orderService.getRecite(thirdOrder);
-        System.out.println(customer.getOrderedBeverages());
+        orderService.getReceipt(thirdOrder);
+        Assertions.assertEquals(6, customer.getOrderedBeverages());
+
 
     }
 }
