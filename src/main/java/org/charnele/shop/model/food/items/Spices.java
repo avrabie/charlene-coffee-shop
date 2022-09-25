@@ -1,7 +1,8 @@
-package org.charnele.shop.model.extras;
+package org.charnele.shop.model.food.items;
 
 import org.charnele.shop.model.FoodItem;
 
+//spices can be added in Tea or in Snacks not implemented
 public class Spices implements FoodItem {
     @Override
     public String getDescription() {

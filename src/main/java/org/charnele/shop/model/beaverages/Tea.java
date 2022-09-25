@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Function;
 
+// Let's sell tea as well...
+// this is to showcase the strategy pattern
 public class Tea extends Beverage {
-    // Let's sell tea as well... not just coffee
-    // Also, assume, by default, price of tea will be -20% of price of coffee, we will use a price strategy
-
     private Size size;
     private Function<Double, Double> priceStrategy;
 
