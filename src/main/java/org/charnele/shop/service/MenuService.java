@@ -1,15 +1,13 @@
 package org.charnele.shop.service;
 
+import org.charnele.shop.model.Extra;
 import org.charnele.shop.model.Food;
 import org.charnele.shop.model.beaverages.Beverage;
 import org.charnele.shop.model.beaverages.Coffee;
 import org.charnele.shop.model.beaverages.OrangeJuice;
 import org.charnele.shop.model.beaverages.Tea;
 import org.charnele.shop.model.beaverages.size.Size;
-import org.charnele.shop.model.extras.FoamedMilk;
-import org.charnele.shop.model.extras.Milk;
-import org.charnele.shop.model.extras.SpecialRoast;
-import org.charnele.shop.model.extras.Spices;
+import org.charnele.shop.model.extras.*;
 import org.charnele.shop.model.food.BaconRoll;
 import org.charnele.shop.model.food.Hamburger;
 
@@ -50,6 +48,19 @@ public class MenuService {
 
     public Beverage addSpecialRoast(Beverage beverage) {
         beverage.withExtras(new SpecialRoast());
+        return beverage;
+    }
+
+
+    // let's say we do have some extras in the shop which are not in the menu that the customer wants as an add-on
+    public Beverage addCustomerExtraNotOnMenu(Beverage beverage, Extra extra) {
+        beverage.withExtras(extra);
+        return beverage;
+    }
+
+    // customer has an add hock wish, then we must come up with a price
+    public Beverage addCustomerAddHockWish(Beverage beverage, String name, Double price) {
+        beverage.withExtras(new CustomerCustomFoodItem(name, price));
         return beverage;
     }
 

@@ -6,6 +6,7 @@ import org.charnele.shop.model.FoodItem;
 import org.charnele.shop.model.Order;
 import org.charnele.shop.model.discount.Discount;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class OrderService {
@@ -24,9 +25,7 @@ public class OrderService {
     public void getReceit(Order order) {
         List<Food> orderedFoods = order.getOrderedFoods();
 
-        String welcome = "Welcome to the Charlene's Shop";
-        System.out.println(String.format("%-" + 80 + "s", String.format("%" + (welcome.length() + (80 - welcome.length()) / 2) + "s", welcome)));
-        orderedFoods.forEach(System.out::println);
+
         // TODO: 25/09/2022 IMPORTANT Extract this into a service to calculate some discounts
         Double grossTotal = orderedFoods.stream().map(FoodItem::getPrice).reduce(Double::sum).orElse(0.0);
 
@@ -34,13 +33,19 @@ public class OrderService {
         Double discountAmount = discounts.stream().map(Discount::getAmount).reduce(Double::sum).orElse(0.0);
 
 
+        // TODO: 25/09/2022 Extract in a private method
+        String welcome = "Welcome to Charlene's Coffee Shop";
+        System.out.println(String.format("%-" + 80 + "s", String.format("%" + (welcome.length() + (80 - welcome.length()) / 2) + "s", welcome)));
+        System.out.println("Your Order on " + LocalDate.now());
+        orderedFoods.forEach(System.out::println);
+
         System.out.println(String.format("%1$80s", "Total: " + grossTotal) + " CHF");
         System.out.println("Discounts");
         discounts.forEach(System.out::println);
 
         System.out.println(String.format("%1$80s", "Total Discounts: " + discountAmount) + " CHF");
-        System.out.println("Billable Invoice");
-        System.out.println(String.format("%1$80s", "Total for Payment: " + (grossTotal-discountAmount)) + " CHF");
+        System.out.println("Invoice");
+        System.out.println(String.format("%1$80s", "Total Payable: " + (grossTotal - discountAmount)) + " CHF");
 
     }
 

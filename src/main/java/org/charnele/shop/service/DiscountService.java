@@ -22,9 +22,8 @@ public class DiscountService {
             Optional<FoodItem> max = order.getOrderedFoods().stream().filter(food -> food instanceof Beverage).filter(beverage -> ((Beverage) beverage).getExtras().size() > 0)
                     .flatMap(beverage -> ((Beverage) beverage).getExtras().stream())
                     .max(Comparator.comparing(FoodItem::getPrice));
-//            Optional<Food> max = order.getOrderedFoods().stream().filter(food -> food instanceof Extra).max(Comparator.comparing(FoodItem::getPrice));
             Discount discount = max.map(food -> new Discount(food))
-                    .orElse(new Discount("You are entitled to a free extra for your beverage. None was ordered however, STBU! :)", 0.0));
+                    .orElse(new Discount("You are entitled to a free extra. Make use of it next time!", 0.0));
             applicableDiscounts.add(discount);
         }
         return applicableDiscounts;
