@@ -11,6 +11,7 @@ import org.charnele.shop.model.extras.Milk;
 import org.charnele.shop.model.extras.SpecialRoast;
 import org.charnele.shop.model.extras.Spices;
 import org.charnele.shop.model.food.BaconRoll;
+import org.charnele.shop.model.food.Hamburger;
 
 public class MenuService {
 
@@ -22,8 +23,12 @@ public class MenuService {
         return new OrangeJuice();
     }
 
-    public BaconRoll baconRoll(Size size) {
+    public BaconRoll baconRoll() {
         return new BaconRoll();
+    }
+
+    public Hamburger hamburger() {
+        return new Hamburger();
     }
 
     public Tea tea(Size size) {

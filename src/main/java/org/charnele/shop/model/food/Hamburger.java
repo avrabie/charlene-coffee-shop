@@ -1,13 +1,13 @@
 package org.charnele.shop.model.food;
 
-public class BaconRoll extends Snack {
+public class Hamburger extends Snack {
     @Override
     public String getDescription() {
-        return "backon roll";
+        return "hamburger";
     }
 
     @Override
     public Double getPrice() {
-        return 4.5;
+        return 7.5;
     }
 }
