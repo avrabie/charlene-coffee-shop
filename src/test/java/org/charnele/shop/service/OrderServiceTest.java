@@ -1,5 +1,6 @@
 package org.charnele.shop.service;
 
+import org.charnele.shop.model.beaverages.OrangeJuice;
 import org.charnele.shop.model.order.Order;
 import org.charnele.shop.model.beaverages.Coffee;
 import org.charnele.shop.model.beaverages.Tea;
@@ -124,6 +125,33 @@ class OrderServiceTest {
         newOrder.addFoodItem(coffee);
         Hamburger hamburger = menuService.hamburger();
         newOrder.addFoodItem(hamburger);
+        orderService.getReceit(newOrder);
+
+    }
+
+    @Test
+    void thirstyCustomerTest() {
+        Order newOrder = orderService.createNewOrder();
+
+        OrangeJuice orangeJuice = menuService.orangeJuice();
+        orangeJuice = menuService.refillOrangeJuice(orangeJuice); //refill once
+
+        newOrder.addFoodItem(orangeJuice);
+
+        orderService.getReceit(newOrder);
+
+    }
+
+    @Test
+    void veryThirstyCustomerTest() {
+        Order newOrder = orderService.createNewOrder();
+
+        OrangeJuice orangeJuice = menuService.orangeJuice();
+        orangeJuice = menuService.refillOrangeJuice(orangeJuice);
+        orangeJuice = menuService.refillOrangeJuice(orangeJuice); //refill twice
+
+        newOrder.addFoodItem(orangeJuice);
+
         orderService.getReceit(newOrder);
 
     }

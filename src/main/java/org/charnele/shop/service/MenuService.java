@@ -1,6 +1,6 @@
 package org.charnele.shop.service;
 
-import org.charnele.shop.model.Extra;
+import org.charnele.shop.model.extras.Extra;
 import org.charnele.shop.model.beaverages.Beverage;
 import org.charnele.shop.model.beaverages.Coffee;
 import org.charnele.shop.model.beaverages.OrangeJuice;
@@ -19,6 +19,12 @@ public class MenuService {
 
     public OrangeJuice orangeJuice() {
         return new OrangeJuice();
+    }
+
+    // if refill orange juice glass n times, receipt should show (n * 0.25l) of drank orange juice,
+    // and the price accordingly, but it SHOULD NOT appear n times in the recipe
+    public OrangeJuice refillOrangeJuice(OrangeJuice orangeJuice) {
+        return new OrangeJuice(orangeJuice);
     }
 
     public BaconRoll baconRoll() {
@@ -71,10 +77,7 @@ public class MenuService {
     }
 
 
-    //feature
-    public OrangeJuice refillOrangeJuice(OrangeJuice orangeJuice) {
-        return new OrangeJuice(orangeJuice);
-    }
+
 
 
     //prebuilt products
