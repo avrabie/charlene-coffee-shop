@@ -1,7 +1,7 @@
 package org.charnele.shop.service;
 
 import org.charnele.shop.model.FoodItem;
-import org.charnele.shop.model.Order;
+import org.charnele.shop.model.order.Order;
 import org.charnele.shop.model.beaverages.Beverage;
 import org.charnele.shop.model.discount.Discount;
 import org.charnele.shop.model.snack.Snack;

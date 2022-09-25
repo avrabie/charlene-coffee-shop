@@ -1,6 +1,6 @@
 package org.charnele.shop.service;
 
-import org.charnele.shop.model.Order;
+import org.charnele.shop.model.order.Order;
 import org.charnele.shop.model.beaverages.Coffee;
 import org.charnele.shop.model.beaverages.Tea;
 import org.charnele.shop.model.beaverages.size.Size;

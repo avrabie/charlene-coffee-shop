@@ -1,6 +1,7 @@
-package org.charnele.shop.model;
+package org.charnele.shop.model.customer;
 
 import org.charnele.shop.model.beaverages.Beverage;
+import org.charnele.shop.model.order.Order;
 
 import java.util.ArrayList;
 import java.util.List;

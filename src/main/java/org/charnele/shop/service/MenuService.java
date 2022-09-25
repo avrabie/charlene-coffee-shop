@@ -7,6 +7,7 @@ import org.charnele.shop.model.beaverages.OrangeJuice;
 import org.charnele.shop.model.beaverages.Tea;
 import org.charnele.shop.model.beaverages.size.Size;
 import org.charnele.shop.model.extras.*;
+import org.charnele.shop.model.food.items.Spices;
 import org.charnele.shop.model.snack.BaconRoll;
 import org.charnele.shop.model.snack.Hamburger;
 

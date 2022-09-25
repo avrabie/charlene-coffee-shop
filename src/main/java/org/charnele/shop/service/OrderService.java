@@ -1,9 +1,9 @@
 package org.charnele.shop.service;
 
-import org.charnele.shop.model.Customer;
+import org.charnele.shop.model.customer.Customer;
 import org.charnele.shop.model.Food;
 import org.charnele.shop.model.FoodItem;
-import org.charnele.shop.model.Order;
+import org.charnele.shop.model.order.Order;
 import org.charnele.shop.model.discount.Discount;
 
 import java.time.LocalDate;

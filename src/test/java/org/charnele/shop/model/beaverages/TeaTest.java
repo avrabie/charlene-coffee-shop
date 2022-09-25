@@ -1,7 +1,7 @@
 package org.charnele.shop.model.beaverages;
 
 import org.charnele.shop.model.beaverages.size.Size;
-import org.charnele.shop.model.extras.Spices;
+import org.charnele.shop.model.food.items.Spices;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

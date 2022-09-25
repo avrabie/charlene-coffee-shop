@@ -1,4 +1,4 @@
-package org.charnele.shop.model.extras;
+package org.charnele.shop.model.food.items;
 
 import org.charnele.shop.model.FoodItem;
 
