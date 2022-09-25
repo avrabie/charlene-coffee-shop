@@ -16,6 +16,7 @@ public class OrderService {
         return new Order(existingCustomer);
     }
 
+    // for customers without cards
     public Order createNewOrder() {
         return new Order();
     }
@@ -27,15 +28,19 @@ public class OrderService {
         System.out.println(String.format("%-" + 80 + "s", String.format("%" + (welcome.length() + (80 - welcome.length()) / 2) + "s", welcome)));
         orderedFoods.forEach(System.out::println);
         // TODO: 25/09/2022 IMPORTANT Extract this into a service to calculate some discounts
-        String total = "Total: " + orderedFoods.stream().map(FoodItem::getPrice).reduce(Double::sum).orElse(0.0);
+        Double grossTotal = orderedFoods.stream().map(FoodItem::getPrice).reduce(Double::sum).orElse(0.0);
 
         List<Discount> discounts = discountService.applyDiscount(order);
+        Double discountAmount = discounts.stream().map(Discount::getAmount).reduce(Double::sum).orElse(0.0);
 
 
-
-        System.out.println(String.format("%1$80s", total) + " CHF");
+        System.out.println(String.format("%1$80s", "Total: " + grossTotal) + " CHF");
         System.out.println("Discounts");
         discounts.forEach(System.out::println);
+
+        System.out.println(String.format("%1$80s", "Total Discounts: " + discountAmount) + " CHF");
+        System.out.println("Billable Invoice");
+        System.out.println(String.format("%1$80s", "Total for Payment: " + (grossTotal-discountAmount)) + " CHF");
 
     }
 
