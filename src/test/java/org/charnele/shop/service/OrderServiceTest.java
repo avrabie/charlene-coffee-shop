@@ -1,6 +1,7 @@
 package org.charnele.shop.service;
 
 import org.charnele.shop.model.beaverages.OrangeJuice;
+import org.charnele.shop.model.customer.Customer;
 import org.charnele.shop.model.order.Order;
 import org.charnele.shop.model.beaverages.Coffee;
 import org.charnele.shop.model.beaverages.Tea;
@@ -20,7 +21,7 @@ class OrderServiceTest {
         Order newOrder = orderService.createNewOrder();
         Coffee coffee = menuService.coffee(Size.SMALL);
         newOrder.addFoodItem(coffee);
-        orderService.getReceit(newOrder);
+        orderService.getRecite(newOrder);
     }
 
     @Test
@@ -38,7 +39,7 @@ class OrderServiceTest {
         newOrder.addFoodItem(coffee);
         newOrder.addFoodItem(tea);
 
-        orderService.getReceit(newOrder);
+        orderService.getRecite(newOrder);
 
     }
 
@@ -61,7 +62,7 @@ class OrderServiceTest {
         BaconRoll baconRoll = menuService.baconRoll();
         newOrder.addFoodItem(baconRoll);
 
-        orderService.getReceit(newOrder);
+        orderService.getRecite(newOrder);
 
     }
 
@@ -78,7 +79,7 @@ class OrderServiceTest {
         BaconRoll baconRoll = menuService.baconRoll();
         newOrder.addFoodItem(baconRoll);
 
-        orderService.getReceit(newOrder);
+        orderService.getRecite(newOrder);
 
     }
     @Test
@@ -94,7 +95,7 @@ class OrderServiceTest {
         Hamburger hamburger = menuService.hamburger();
         newOrder.addFoodItem(hamburger);
 
-        orderService.getReceit(newOrder);
+        orderService.getRecite(newOrder);
 
     }
 
@@ -111,7 +112,7 @@ class OrderServiceTest {
         newOrder.addFoodItem(coffee);
         Hamburger hamburger = menuService.hamburger();
         newOrder.addFoodItem(hamburger);
-        orderService.getReceit(newOrder);
+        orderService.getRecite(newOrder);
 
     }
 
@@ -125,7 +126,7 @@ class OrderServiceTest {
         newOrder.addFoodItem(coffee);
         Hamburger hamburger = menuService.hamburger();
         newOrder.addFoodItem(hamburger);
-        orderService.getReceit(newOrder);
+        orderService.getRecite(newOrder);
 
     }
 
@@ -138,7 +139,7 @@ class OrderServiceTest {
 
         newOrder.addFoodItem(orangeJuice);
 
-        orderService.getReceit(newOrder);
+        orderService.getRecite(newOrder);
 
     }
 
@@ -152,7 +153,88 @@ class OrderServiceTest {
 
         newOrder.addFoodItem(orangeJuice);
 
-        orderService.getReceit(newOrder);
+        orderService.getRecite(newOrder);
+    }
+
+
+    @Test
+    void existingCustomerOrderGets5CoffeeFree() {
+        Customer customer = new Customer("Adrian");
+        //first visit
+        Order firstOrder = orderService.createNewOrder(customer);
+        Coffee coffee = menuService.coffee(Size.LARGE);
+        firstOrder.addFoodItem(coffee);
+
+        OrangeJuice orangeJuice = menuService.orangeJuice();
+        orangeJuice = menuService.refillOrangeJuice(orangeJuice);
+        orangeJuice = menuService.refillOrangeJuice(orangeJuice); //refill twice
+
+        firstOrder.addFoodItem(orangeJuice);
+        orderService.getRecite(firstOrder);
+
+        System.out.println(customer.getOrderedBeverages());
+
+        //second visit
+        Order secondOrder = orderService.createNewOrder(customer);
+        Coffee coffee2 = menuService.coffee(Size.MEDIUM);
+        menuService.addMilk(coffee2);
+        secondOrder.addFoodItem(coffee2);
+        Tea tea = menuService.tea(Size.MEDIUM);
+        menuService.addSpices(tea);
+        secondOrder.addFoodItem(tea);
+        orderService.getRecite(secondOrder);
+
+        System.out.println(customer.getOrderedBeverages());
+
+        //third time
+        Order thirdOrder = orderService.createNewOrder(customer);
+        Coffee coffee3 = menuService.coffee(Size.SMALL);
+        thirdOrder.addFoodItem(coffee3);
+        orderService.getRecite(thirdOrder);
+        System.out.println(customer.getOrderedBeverages());
+
+    }
+
+
+    @Test
+    void existingCustomerOrderGets5CoffeeFree2() {
+        Customer customer = new Customer("Adrian");
+        //first visit
+        Order firstOrder = orderService.createNewOrder(customer);
+        Coffee coffee = menuService.coffee(Size.LARGE);
+        firstOrder.addFoodItem(coffee);
+
+        OrangeJuice orangeJuice = menuService.orangeJuice();
+        orangeJuice = menuService.refillOrangeJuice(orangeJuice);
+        orangeJuice = menuService.refillOrangeJuice(orangeJuice); //refill twice
+
+        firstOrder.addFoodItem(orangeJuice);
+        orderService.getRecite(firstOrder);
+
+        System.out.println(customer.getOrderedBeverages());
+
+        //second visit
+        Order secondOrder = orderService.createNewOrder(customer);
+        Coffee coffee2 = menuService.coffee(Size.MEDIUM);
+        menuService.addMilk(coffee2);
+        secondOrder.addFoodItem(coffee2);
+        Tea tea = menuService.tea(Size.MEDIUM);
+        menuService.addSpices(tea);
+        secondOrder.addFoodItem(tea);
+        orderService.getRecite(secondOrder);
+
+        System.out.println(customer.getOrderedBeverages());
+
+        //third time
+        Order thirdOrder = orderService.createNewOrder(customer);
+        Coffee coffee3 = menuService.coffee(Size.SMALL);
+        thirdOrder.addFoodItem(coffee3);
+
+        OrangeJuice orangeJuice1 = menuService.orangeJuice();
+        thirdOrder.addFoodItem(orangeJuice1);
+
+        orderService.getRecite(thirdOrder);
+        System.out.println(customer.getOrderedBeverages());
 
     }
 }

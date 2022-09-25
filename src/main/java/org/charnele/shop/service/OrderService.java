@@ -8,6 +8,7 @@ import org.charnele.shop.model.discount.Discount;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class OrderService {
 
@@ -17,20 +18,25 @@ public class OrderService {
         return new Order(existingCustomer);
     }
 
-    // for customers without cards
+    // for customers without cards, and recite
     public Order createNewOrder() {
         return new Order();
     }
 
-    public void getReceit(Order order) {
+    public void getRecite(Order order) {
+        Optional<Customer> customer = Optional.ofNullable(order.getCustomer());
+        customer.ifPresent(cust -> cust.concludeOrder(order));
         List<Food> orderedFoods = order.getOrderedFoods();
-
 
         // TODO: 25/09/2022 IMPORTANT Extract this into a service to calculate some discounts
         Double grossTotal = orderedFoods.stream().map(FoodItem::getPrice).reduce(Double::sum).orElse(0.0);
 
         List<Discount> discounts = discountService.applyDiscount(order);
         Double discountAmount = discounts.stream().map(Discount::getAmount).reduce(Double::sum).orElse(0.0);
+
+        //loyal customer discount
+        Optional<List<Discount>> customerDiscounts = customer.map(customer1 -> discountService.applyCustomerDiscount(order));
+        Double sumCustomerDiscounts = customerDiscounts.map(list -> list.stream().map(Discount::getAmount).reduce(Double::sum).orElse(0.0)).orElse(0.0);
 
 
         // TODO: 25/09/2022 Extract in a private method
@@ -42,10 +48,11 @@ public class OrderService {
         System.out.println(String.format("%1$80s", "Total: " + grossTotal) + " CHF");
         System.out.println("Discounts");
         discounts.forEach(System.out::println);
+        customerDiscounts.ifPresent(discounts1 -> discounts1.forEach(System.out::println));
 
-        System.out.println(String.format("%1$80s", "Total Discounts: " + discountAmount) + " CHF");
+        System.out.println(String.format("%1$80s", "Total Discounts: " + (discountAmount+sumCustomerDiscounts)) + " CHF");
         System.out.println("Invoice");
-        System.out.println(String.format("%1$80s", "Total Payable: " + (grossTotal - discountAmount)) + " CHF");
+        System.out.println(String.format("%1$80s", "Total Payable: " + (grossTotal - discountAmount-sumCustomerDiscounts)) + " CHF");
 
     }
 

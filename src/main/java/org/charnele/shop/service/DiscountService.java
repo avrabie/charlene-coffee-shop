@@ -1,9 +1,11 @@
 package org.charnele.shop.service;
 
+import org.charnele.shop.model.Food;
 import org.charnele.shop.model.FoodItem;
-import org.charnele.shop.model.order.Order;
 import org.charnele.shop.model.beaverages.Beverage;
+import org.charnele.shop.model.customer.Customer;
 import org.charnele.shop.model.discount.Discount;
+import org.charnele.shop.model.order.Order;
 import org.charnele.shop.model.snack.Snack;
 
 import java.util.ArrayList;
@@ -27,5 +29,24 @@ public class DiscountService {
             applicableDiscounts.add(discount);
         }
         return applicableDiscounts;
+    }
+
+    public List<Discount> applyCustomerDiscount(Order order) {
+        Customer customer = order.getCustomer();
+        Integer orderedBeverages = customer.getOrderedBeverages();
+        long currentOrdedDrinks = order.getOrderedFoods().stream().filter(food -> food instanceof Beverage).count();
+        List<Discount> applicableDiscounts = new ArrayList<>();
+
+        if (orderedBeverages > 0 && ((orderedBeverages - currentOrdedDrinks) % 5 + currentOrdedDrinks) >= 5) {
+            Optional<Food> max = order.getOrderedFoods().stream().filter(food -> food instanceof Beverage).max(Comparator.comparing(Food::getPrice));
+            Discount discount = max.map(drink -> new Discount(drink))
+                    .orElse(new Discount("You have a free coffee waiting from the house!", 0.0));
+            applicableDiscounts.add(discount);
+
+        }
+        return applicableDiscounts;
+
+
+
     }
 }
